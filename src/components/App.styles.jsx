@@ -4,8 +4,8 @@ export const Container = styled.div`
   text-align: center;
 `;
 export const Input = styled.input`
-  padding: 4px 8px;
-  width: 240px;
+  padding: 4px 16px;
+  width: 256px;
 `;
 export const PasswordStrengthBox = styled.div`
   display: flex;

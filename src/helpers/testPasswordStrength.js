@@ -1,7 +1,10 @@
 export const testPasswordStrength = password => {
-  const letters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
-  const digits = '0123456789';
-  const symbols = '!@#$%^&*()_-+=|/.,:;[]{}';
+  // const letters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
+  // const digits = '0123456789';
+  // const symbols = '!@#$%^&*()_-+=|/.,:;[]{}';
+  const letters = '[A-Za-z]';
+  const digits = '[0-9]';
+  const symbols = '[^0-9]';
   let isLetters = false;
   let isDigits = false;
   let isSymbols = false;
