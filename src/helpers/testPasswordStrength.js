@@ -1,30 +1,29 @@
 export const testPasswordStrength = password => {
-  // const letters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM';
-  // const digits = '0123456789';
-  // const symbols = '!@#$%^&*()_-+=|/.,:;[]{}';
-  const letters = '[A-Za-z]';
-  const digits = '[0-9]';
-  const symbols = '[^0-9]';
-  let isLetters = false;
-  let isDigits = false;
-  let isSymbols = false;
+  if (!password) return;
 
-  for (let i = 0; i < password.length; i++) {
-    if (!isLetters && letters.indexOf(password[i]) !== -1) isLetters = true;
-    else if (!isDigits && digits.indexOf(password[i]) !== -1) isDigits = true;
-    else if (!isSymbols && symbols.indexOf(password[i]) !== -1)
-      isSymbols = true;
-  }
+  const lettersRegexp = /[A-Za-z]/;
+  const digitsRegexp = /[0-9]/;
+  const symbolsRegexp = /[^0-9A-Za-z]/;
 
-  const strong = isLetters && isDigits && isSymbols;
+  let hasLetters = false;
+  let hasDigits = false;
+  let hasSymbols = false;
+
+  if (password.match(lettersRegexp)) hasLetters = true;
+  if (password.match(digitsRegexp)) hasDigits = true;
+  if (password.match(symbolsRegexp)) hasSymbols = true;
+
+  console.log('hasLetters', hasLetters);
+  console.log('hasDigits', hasDigits);
+  console.log('hasSymbols', hasSymbols);
+  const strong = hasLetters && hasDigits && hasSymbols;
   const medium =
-    (isLetters && isDigits) ||
-    (isLetters && isSymbols) ||
-    (isDigits && isSymbols);
-  const easy = isLetters || isDigits || isSymbols;
+    (hasLetters && hasDigits) ||
+    (hasLetters && hasSymbols) ||
+    (hasDigits && hasSymbols);
+  const easy = hasLetters || hasDigits || hasSymbols;
   const dangerous = password.length < 8;
 
-  if (!password) return;
   if (dangerous) return 'dangerous';
   if (strong) return 'strong';
   if (medium) return 'medium';
